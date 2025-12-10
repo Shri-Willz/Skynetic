@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+
+@theme{
+  --color-background: #000000;
+  --color-card-background: bg-linear-gradient(to right, #1a1a1a, #2a2a2a);
+  --color-accent: #9B9FDB;
+  --color-primary-text: #ffffff;
+  --color-secondary-text: #6B7280;
+}
