@@ -32,10 +32,10 @@ CLERK_SECRET_KEY=""
 
 ```
 
-TO get this values go to :
+T0 get this values go to :
 
-clerk:https://clerk.com/,
-Supabase:https://supabase.com/
+clerk: https://clerk.com/,<br/>
+Supabase: https://supabase.com/
 
 Fourth,
 
