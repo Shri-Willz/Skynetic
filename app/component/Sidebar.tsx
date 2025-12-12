@@ -28,32 +28,33 @@ export default function Sidebar() {
       <aside className="
         hidden md:flex 
         w-60 lg:w-64 
-        bg-white/70 backdrop-blur-2xl 
-        border-r border-white/50 
+        bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl 
+        border-r border-white/50 dark:border-slate-700/50
         flex-col 
         p-5 lg:p-6 
         gap-8 
         fixed h-full 
         z-20 
         shadow-[4px_0_24px_rgba(0,0,0,0.04)]
+        transition-colors duration-300
       ">
         {/* Logo */}
         <div className="flex items-center gap-3 px-2">
           <div className="
             w-9 h-9 lg:w-10 lg:h-10 
-            bg-gradient-to-br from-slate-900 to-slate-700
+            bg-gradient-to-br from-slate-900 to-slate-700 dark:from-indigo-600 dark:to-violet-600
             text-white rounded-xl 
             flex items-center justify-center 
-            shadow-lg shadow-slate-900/20
+            shadow-lg shadow-slate-900/20 dark:shadow-indigo-900/20
           ">
             <Rocket size={20} />
           </div>
 
           <div>
-            <h1 className="text-lg lg:text-xl font-bold text-slate-900">
+            <h1 className="text-lg lg:text-xl font-bold text-slate-900 dark:text-white">
               Skynetic
             </h1>
-            <p className="text-[10px] text-gray-500">Accelerating Careers</p>
+            <p className="text-[10px] text-gray-500 dark:text-gray-400">Accelerating Careers</p>
           </div>
         </div>
 
@@ -74,9 +75,10 @@ export default function Sidebar() {
           flex items-center gap-3 
           px-3 py-3 
           mt-auto 
-          bg-white/50 rounded-2xl 
-          border border-white/60 
-          hover:bg-white/80 
+          bg-white/50 dark:bg-slate-800/50 
+          rounded-2xl 
+          border border-white/60 dark:border-slate-700/60
+          hover:bg-white/80 dark:hover:bg-slate-700/80
           transition cursor-pointer group
         ">
           <div className="
@@ -84,17 +86,17 @@ export default function Sidebar() {
             bg-gradient-to-tr from-indigo-600 to-violet-600 
             rounded-full text-xs font-bold 
             flex items-center justify-center text-white 
-            shadow-md ring-2 ring-white/50
+            shadow-md ring-2 ring-white/50 dark:ring-slate-700
           ">
             AM
           </div>
           <div className="flex-1">
-            <p className="text-sm font-bold text-slate-900 group-hover:text-indigo-700">
+            <p className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-700 dark:group-hover:text-indigo-400">
               Alex Morgan
             </p>
-            <p className="text-xs text-gray-500">alex@example.com</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">alex@example.com</p>
           </div>
-          <MoreHorizontal size={16} className="text-gray-400 group-hover:text-indigo-600" />
+          <MoreHorizontal size={16} className="text-gray-400 dark:text-gray-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400" />
         </div>
       </aside>
 
@@ -104,13 +106,14 @@ export default function Sidebar() {
       <nav
         className="
           fixed bottom-0 left-0 right-0 
-          bg-white/80 backdrop-blur-xl 
-          border-t border-slate-200/60 
+          bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl 
+          border-t border-slate-200/60 dark:border-slate-700/60
           shadow-[0_-4px_20px_rgba(0,0,0,0.04)]
           flex md:hidden 
           items-center justify-between 
           px-4 py-2.5 
           z-50
+          transition-colors duration-300
         "
       >
         <MobileItem icon={<Home size={22} />} label="Home" href="/home" active={pathname === "/home"} />
@@ -146,13 +149,13 @@ function SidebarItem({
         flex items-center gap-3 
         px-4 py-3 
         rounded-2xl 
-        transition-all duration-300 relative
+        transition-all duration-300 relative group
         ${active
-          ? "bg-slate-900 text-white shadow-lg shadow-slate-900/20"
-          : "text-gray-500 hover:bg-white/60 hover:text-slate-900 hover:shadow-sm"}
+          ? "bg-slate-900 dark:bg-indigo-600 text-white shadow-lg shadow-slate-900/20 dark:shadow-indigo-600/20"
+          : "text-gray-500 dark:text-slate-400 hover:bg-white/60 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white hover:shadow-sm"}
       `}
     >
-      <span className={active ? "text-white" : "text-gray-400 group-hover:text-indigo-600"}>
+      <span className={active ? "text-white" : "text-gray-400 dark:text-slate-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors"}>
         {icon}
       </span>
 
@@ -164,7 +167,9 @@ function SidebarItem({
         <span
           className={`
             ml-auto text-[10px] font-bold px-2 py-0.5 rounded-full
-            ${active ? "bg-white/20 text-white" : "bg-indigo-50 text-indigo-600"}
+            ${active 
+              ? "bg-white/20 text-white" 
+              : "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400"}
           `}
         >
           {count}
@@ -195,7 +200,7 @@ function MobileItem({
     >
       <span
         className={`${
-          active ? "text-indigo-600" : "text-gray-400"
+          active ? "text-indigo-600 dark:text-indigo-400" : "text-gray-400 dark:text-gray-500"
         } transition-colors`}
       >
         {icon}
@@ -203,7 +208,7 @@ function MobileItem({
       <span
         className={`
           text-[10px] font-medium
-          ${active ? "text-indigo-600" : "text-gray-500"}
+          ${active ? "text-indigo-600 dark:text-indigo-400" : "text-gray-500 dark:text-gray-500"}
         `}
       >
         {label}

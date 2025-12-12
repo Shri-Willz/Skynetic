@@ -13,7 +13,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      {/* 👇 UPDATED: 
+         - Replaced "bg-white dark:bg-black" with "bg-background"
+         - Replaced "text-slate-900" with "text-foreground"
+         
+         Now, Tailwind will automatically look at your globals.css variables.
+         When .dark is active, it swaps to your Deep Navy colors automatically.
+      */}
+      <body className="bg-background text-foreground transition-colors duration-300">
+        {children}
+      </body>
     </html>
   );
 }
