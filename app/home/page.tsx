@@ -29,7 +29,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-[#F8F9FC] to-purple-50 flex font-sans text-slate-800 overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-indigo-50 via-[#F8F9FC] to-purple-50 flex font-sans text-slate-800 overflow-hidden">
       
       {/* 1. Sidebar Component */}
       <Sidebar />
@@ -41,10 +41,10 @@ export default function Home() {
         <Header mounted={mounted} />
 
         {/* Page Heading */}
-        <div className={`mb-8 transition-all duration-700 delay-100 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-            <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Welcome back, Alex</h2>
-            <div className="flex items-center gap-2 mt-1">
-              <p className="text-gray-500">Your AI agent has been working. Here's your career progress.</p>
+      <div className={`mb-8 transition-all duration-700 delay-100 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+      <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Welcome back, Alex</h2>
+      <div className="flex items-center gap-2 mt-1">
+        <p className="text-gray-500">Your AI agent has been working. Here&apos;s your career progress.</p>
               <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600 text-xs font-bold border border-indigo-100">
                 <Sparkles size={10} fill="currentColor" /> AI Active
               </span>
@@ -54,7 +54,7 @@ export default function Home() {
         {/* ROW 1: Career Readiness Score */}
         <div className={`bg-white/60 backdrop-blur-xl border border-white/60 p-8 rounded-[2rem] shadow-sm hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.05)] transition-all duration-500 mb-8 flex flex-col md:flex-row gap-10 items-center group
           ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-            <div className="relative w-44 h-44 flex-shrink-0 transition-transform duration-500 group-hover:scale-105">
+            <div className="relative w-44 h-44 shrink-0 transition-transform duration-500 group-hover:scale-105">
                 <div className="w-full h-full rounded-full bg-indigo-50/50 flex items-center justify-center shadow-inner" 
                      style={{background: 'conic-gradient(#4f46e5 78%, #e0e7ff 0)'}}>
                     <div className="w-36 h-36 bg-white/90 backdrop-blur-sm rounded-full flex flex-col items-center justify-center shadow-[0_10px_30px_-10px_rgba(79,70,229,0.3)]">
@@ -93,14 +93,14 @@ export default function Home() {
                 <span className="text-5xl font-bold text-slate-900 tracking-tight">82%</span>
                 <p className="text-xs text-gray-500 font-medium mt-1">avg across active applications</p>
              </div>
-             <div className="flex items-center gap-2 mb-8 bg-green-50/80 p-2 rounded-lg border border-green-100 inline-flex">
+             <div className="items-center gap-2 mb-8 bg-green-50/80 p-2 rounded-lg border border-green-100 inline-flex">
                  <TrendingUp size={14} className="text-green-600"/>
                  <span className="text-green-700 font-bold text-xs">3 matches this week</span>
              </div>
              <div className="mt-auto flex items-end gap-1.5 h-16 opacity-80 hover:opacity-100 transition-opacity">
                  {/* Bar Chart Visualization */}
                  {[40, 60, 45, 80, 65, 90, 75].map((h, i) => (
-                    <div key={i} className="bg-gradient-to-t from-indigo-600 to-violet-400 w-full rounded-t-lg transition-all duration-500 hover:bg-indigo-500" 
+                    <div key={i} className="bg-linear-to-t from-indigo-600 to-violet-400 w-full rounded-t-lg transition-all duration-500 hover:bg-indigo-500" 
                          style={{height: `${h}%`, transitionDelay: `${i * 50}ms`}}></div>
                  ))}
              </div>
