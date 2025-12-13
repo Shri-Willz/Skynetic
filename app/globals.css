@@ -1,10 +1,119 @@
 @import "tailwindcss";
 
+/* 1. Activate Dark Mode Logic (Class Strategy) */
+@variant dark (&:where(.dark, .dark *));
 
-@theme{
-  --color-background: #000000;
-  --color-card-background: bg-linear-gradient(to right, #1a1a1a, #2a2a2a);
-  --color-accent: #9B9FDB;
-  --color-primary-text: #ffffff;
-  --color-secondary-text: #6B7280;
+/* 2. Map Tailwind utility names to your CSS variables */
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+}
+
+/* 3. Define the Color Values */
+
+/* LIGHT MODE DEFAULTS (Clean & Professional) */
+:root {
+  --background: 0 0% 100%;             /* White */
+  --foreground: 222 47% 11%;           /* Slate 900 */
+  
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  
+  --primary: 262 83% 58%;              /* Match purple identity in light mode too */
+  --primary-foreground: 0 0% 100%;
+  
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222 47% 11%;
+  
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222 47% 11%;
+  
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 262 83% 58%;
+  
+  --radius: 1rem;                      /* Modern rounded corners */
+}
+
+/* DARK MODE (Lovable AI Enhanced - Deep Navy) */
+.dark {
+  /* Main Background: Deep Navy Black */
+  --background: 222 47% 6%;
+  --foreground: 210 40% 98%;           /* Soft White text */
+
+  /* Cards & Surfaces: Slightly lighter navy */
+  --card: 222 47% 8%;
+  --card-foreground: 210 40% 98%;
+  
+  --popover: 222 47% 7%;
+  --popover-foreground: 210 40% 98%;
+
+  /* Primary: Vibrant Purple */
+  --primary: 262 83% 58%;
+  --primary-foreground: 0 0% 100%;     /* White text on purple button */
+
+  /* Secondary: Darker Blue-Grey */
+  --secondary: 222 47% 12%;
+  --secondary-foreground: 210 40% 98%;
+
+  /* Muted: For subtext and deactivated items */
+  --muted: 222 47% 14%;
+  --muted-foreground: 215 20% 65%;     /* Increased contrast for readability */
+
+  /* Accent: Used for hover states */
+  --accent: 262 83% 58%;               /* Purple Glow */
+  --accent-foreground: 0 0% 100%;
+
+  /* Destructive: Error Red */
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+
+  /* Borders & Inputs: Subtle Navy Lines */
+  --border: 222 30% 18%;
+  --input: 222 30% 15%;
+  --ring: 262 83% 58%;                 /* Purple Focus Ring */
+}
+
+/* Global Styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
