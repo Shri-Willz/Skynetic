@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 // 1. Import your custom components
 import Sidebar from "@/app/component/Sidebar"; // Adjust path as needed
 import Header from "@/app/component/Header"; 
@@ -20,14 +20,12 @@ import {
 } from "lucide-react";
 
 export default function InterviewPrepPage() {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(() => true);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-[#F8F9FC] to-purple-50 flex font-sans text-slate-800 overflow-hidden">
+    // 👇 UPDATED: Added dark:from-background etc. for the main gradient
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-[#F8F9FC] to-purple-50 dark:from-background dark:via-background dark:to-background flex font-sans text-slate-800 dark:text-slate-200 overflow-hidden transition-colors duration-300">
       
       {/* 3. Reusable Sidebar */}
       <Sidebar />
@@ -35,23 +33,24 @@ export default function InterviewPrepPage() {
       {/* Main Content */}
       <main className="flex-1 p-8 md:ml-64 relative z-10 overflow-y-auto h-screen scroll-smooth">
         
-        {/* 4. Reusable Header (Pass 'mounted' for animation) */}
+        {/* 4. Reusable Header */}
         <Header mounted={mounted} />
 
         {/* Page Title Section */}
         <div className={`flex justify-between items-end mb-8 transition-all duration-700 delay-100 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
             <div>
-                <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Interview Prep</h2>
-                <p className="text-gray-500 mt-1">Practice makes perfect. Prepare for your upcoming interviews.</p>
+                <h2 className="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">Interview Prep</h2>
+                <p className="text-gray-500 dark:text-gray-400 mt-1">Practice makes perfect. Prepare for your upcoming interviews.</p>
             </div>
-            <button className="flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white px-5 py-3 rounded-xl font-semibold shadow-lg shadow-slate-900/20 hover:shadow-slate-900/30 transition-all hover:-translate-y-0.5 active:translate-y-0">
+            {/* Button updated for dark mode */}
+            <button className="flex items-center gap-2 bg-slate-900 dark:bg-indigo-600 hover:bg-slate-800 dark:hover:bg-indigo-500 text-white px-5 py-3 rounded-xl font-semibold shadow-lg shadow-slate-900/20 dark:shadow-indigo-600/20 hover:shadow-slate-900/30 transition-all hover:-translate-y-0.5 active:translate-y-0">
                 <Play size={16} fill="currentColor" /> Start Practice
             </button>
         </div>
 
         {/* SECTION 1: Upcoming Interviews */}
         <div className="mb-10">
-            <h3 className={`text-lg font-bold text-slate-900 mb-4 transition-all duration-700 delay-150 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+            <h3 className={`text-lg font-bold text-slate-900 dark:text-white mb-4 transition-all duration-700 delay-150 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                 Upcoming Interviews
             </h3>
             
@@ -60,29 +59,29 @@ export default function InterviewPrepPage() {
                 <GlassCard delay={200} mounted={mounted}>
                     <div className="flex justify-between items-start mb-4">
                         <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm border border-gray-100">
+                            <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center shadow-sm border border-gray-100 dark:border-slate-700">
                                 {/* Google G Logo simulation */}
                                 <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-red-500">G</span>
                             </div>
                             <div>
-                                <h4 className="text-lg font-bold text-slate-900">Google</h4>
-                                <p className="text-sm text-gray-500">Senior PM</p>
+                                <h4 className="text-lg font-bold text-slate-900 dark:text-white">Google</h4>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">Senior PM</p>
                             </div>
                         </div>
-                        <span className="bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-lg border border-gray-200/50">Technical</span>
+                        <span className="bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-semibold px-3 py-1 rounded-lg border border-gray-200/50 dark:border-slate-700">Technical</span>
                     </div>
                     
-                    <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
+                    <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-6">
                         <Clock size={16} /> <span>Tomorrow, 3:00 PM</span>
                     </div>
 
                     <div>
                         <div className="flex justify-between text-xs font-semibold mb-2">
-                            <span className="text-gray-500">Prep Score</span>
-                            <span className="text-slate-900">75%</span>
+                            <span className="text-gray-500 dark:text-gray-400">Prep Score</span>
+                            <span className="text-slate-900 dark:text-white">75%</span>
                         </div>
-                        <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
-                            <div className="h-full bg-slate-900 w-[75%] rounded-full shadow-sm"></div>
+                        <div className="h-2 w-full bg-gray-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                            <div className="h-full bg-slate-900 dark:bg-indigo-500 w-[75%] rounded-full shadow-sm"></div>
                         </div>
                     </div>
                 </GlassCard>
@@ -95,24 +94,24 @@ export default function InterviewPrepPage() {
                                 ∞
                             </div>
                             <div>
-                                <h4 className="text-lg font-bold text-slate-900">Meta</h4>
-                                <p className="text-sm text-gray-500">Product Lead</p>
+                                <h4 className="text-lg font-bold text-slate-900 dark:text-white">Meta</h4>
+                                <p className="text-sm text-gray-500 dark:text-gray-400">Product Lead</p>
                             </div>
                         </div>
-                        <span className="bg-gray-100 text-gray-600 text-xs font-semibold px-3 py-1 rounded-lg border border-gray-200/50">Behavioral</span>
+                        <span className="bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-300 text-xs font-semibold px-3 py-1 rounded-lg border border-gray-200/50 dark:border-slate-700">Behavioral</span>
                     </div>
                     
-                    <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
+                    <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-6">
                         <Calendar size={16} /> <span>Jan 25, 2:00 PM</span>
                     </div>
 
                     <div>
                         <div className="flex justify-between text-xs font-semibold mb-2">
-                            <span className="text-gray-500">Prep Score</span>
-                            <span className="text-slate-900">60%</span>
+                            <span className="text-gray-500 dark:text-gray-400">Prep Score</span>
+                            <span className="text-slate-900 dark:text-white">60%</span>
                         </div>
-                        <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
-                            <div className="h-full bg-slate-900 w-[60%] rounded-full shadow-sm"></div>
+                        <div className="h-2 w-full bg-gray-100 dark:bg-slate-700 rounded-full overflow-hidden">
+                            <div className="h-full bg-slate-900 dark:bg-indigo-500 w-[60%] rounded-full shadow-sm"></div>
                         </div>
                     </div>
                 </GlassCard>
@@ -121,7 +120,7 @@ export default function InterviewPrepPage() {
 
         {/* SECTION 2: Practice by Category */}
         <div className="mb-10">
-            <h3 className={`text-lg font-bold text-slate-900 mb-4 transition-all duration-700 delay-400 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+            <h3 className={`text-lg font-bold text-slate-900 dark:text-white mb-4 transition-all duration-700 delay-400 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                 Practice by Category
             </h3>
 
@@ -159,11 +158,11 @@ export default function InterviewPrepPage() {
 
         {/* SECTION 3: Recent Practice Sessions */}
         <div className="pb-8">
-            <h3 className={`text-lg font-bold text-slate-900 mb-4 transition-all duration-700 delay-700 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+            <h3 className={`text-lg font-bold text-slate-900 dark:text-white mb-4 transition-all duration-700 delay-700 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                 Recent Practice Sessions
             </h3>
 
-            <div className={`bg-white/60 backdrop-blur-xl border border-white/60 rounded-[2rem] overflow-hidden shadow-sm transition-all duration-700 delay-700 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+            <div className={`bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl border border-white/60 dark:border-slate-700/60 rounded-[2rem] overflow-hidden shadow-sm transition-all duration-700 delay-700 ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
                 <PracticeSessionItem 
                     title="Behavioral Interview Practice" 
                     meta="5 questions • 25 mins" 
@@ -195,58 +194,58 @@ export default function InterviewPrepPage() {
 
 /* --- Helper Components for THIS Page Only --- */
 
-function GlassCard({ children, delay = 0, mounted, className = "" }) {
+function GlassCard({ children, delay = 0, mounted, className = "" }: any) {
     return (
-        <div className={`bg-white/60 backdrop-blur-xl border border-white/60 p-6 rounded-[1.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-500 ease-out flex flex-col group ${className} ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+        <div className={`bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl border border-white/60 dark:border-slate-700/60 p-6 rounded-[1.5rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-500 ease-out flex flex-col group ${className} ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
              style={{ transitionDelay: `${delay}ms` }}>
             {children}
         </div>
     )
 }
 
-function CategoryCard({ icon, title, desc, count, delay, mounted }) {
+function CategoryCard({ icon, title, desc, count, delay, mounted }: any) {
     return (
-        <div className={`bg-white/60 backdrop-blur-xl border border-white/60 p-6 rounded-[1.5rem] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer group relative overflow-hidden ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
+        <div className={`bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl border border-white/60 dark:border-slate-700/60 p-6 rounded-[1.5rem] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer group relative overflow-hidden ${mounted ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
              style={{ transitionDelay: `${delay}ms` }}>
              
              <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <ArrowRight size={18} className="text-gray-400" />
+                <ArrowRight size={18} className="text-gray-400 dark:text-gray-500" />
              </div>
 
-             <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm text-slate-700 mb-4 border border-gray-100 group-hover:bg-slate-900 group-hover:text-white transition-colors duration-300">
+             <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center shadow-sm text-slate-700 dark:text-slate-200 mb-4 border border-gray-100 dark:border-slate-700 group-hover:bg-slate-900 dark:group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
                 {icon}
              </div>
              
-             <h4 className="font-bold text-slate-900 mb-1">{title}</h4>
-             <p className="text-xs text-gray-500 mb-4 line-clamp-2 leading-relaxed">{desc}</p>
+             <h4 className="font-bold text-slate-900 dark:text-white mb-1">{title}</h4>
+             <p className="text-xs text-gray-500 dark:text-gray-400 mb-4 line-clamp-2 leading-relaxed">{desc}</p>
              
-             <span className="text-[10px] font-semibold text-gray-400 bg-gray-50 px-2 py-1 rounded-lg border border-gray-100">
+             <span className="text-[10px] font-semibold text-gray-400 dark:text-gray-400 bg-gray-50 dark:bg-slate-800 px-2 py-1 rounded-lg border border-gray-100 dark:border-slate-700">
                 {count}
              </span>
         </div>
     )
 }
 
-function PracticeSessionItem({ title, meta, rating, date, isLast }) {
+function PracticeSessionItem({ title, meta, rating, date, isLast }: any) {
     return (
-        <div className={`p-5 flex items-center gap-4 hover:bg-white/50 transition-colors cursor-pointer group ${!isLast ? 'border-b border-gray-100/50' : ''}`}>
-            <div className="w-10 h-10 bg-white/80 rounded-xl flex items-center justify-center text-slate-600 shadow-sm border border-gray-100 group-hover:scale-105 transition-transform">
+        <div className={`p-5 flex items-center gap-4 hover:bg-white/50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer group ${!isLast ? 'border-b border-gray-100/50 dark:border-slate-700/50' : ''}`}>
+            <div className="w-10 h-10 bg-white/80 dark:bg-slate-800 rounded-xl flex items-center justify-center text-slate-600 dark:text-slate-300 shadow-sm border border-gray-100 dark:border-slate-700 group-hover:scale-105 transition-transform">
                 <Mic size={18} />
             </div>
             <div className="flex-1">
-                <h4 className="text-sm font-bold text-slate-900">{title}</h4>
-                <p className="text-xs text-gray-500 mt-0.5">{meta}</p>
+                <h4 className="text-sm font-bold text-slate-900 dark:text-white">{title}</h4>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{meta}</p>
             </div>
             
             <div className="flex flex-col items-end gap-1">
                 <div className="flex items-center gap-1 text-orange-500 font-bold text-xs">
                     <Star size={12} fill="currentColor" /> {rating}
                 </div>
-                <span className="text-[10px] text-gray-400">{date}</span>
+                <span className="text-[10px] text-gray-400 dark:text-gray-500">{date}</span>
             </div>
             
             <div className="pl-2">
-                <ChevronRight size={18} className="text-gray-300 group-hover:text-indigo-600 transition-colors" />
+                <ChevronRight size={18} className="text-gray-300 dark:text-slate-600 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors" />
             </div>
         </div>
     )
